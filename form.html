@@ -1,0 +1,456 @@
+<html>
+   <head>
+      <title>Form</title>
+      <meta name="viewport" content= "width=device-width, initial-scale=1.0, maximum-scale=1.0">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+      <style>
+         .logo{
+			background-image: url('weather-app-button-vector-19380544.jpg');
+			background-repeat:no-repeat;
+			margin-top:-5px;
+			margin-left:-25px;
+		}
+         li{
+         list-style-type:none;
+         padding:10px;
+         font-weight:bold;
+         }
+         .navbar{
+         padding:5px;
+         }
+         .below_head{
+         padding:5px;
+         background-color:#8c38e0;
+         color:white;
+         <!-- margin:20px; -->
+         position:absolute;
+         margin-top:60px;
+         }
+         .head_info{
+         font-weight:bold;
+         font-size:20px;
+         }
+         .left{
+         margin-top:40px;
+         color:grey;
+         }
+         li:hover{
+         -webkit-transition:0.2s;
+         box-shadow:1px 20px 5px -15px #888;
+         color:#888;
+         }
+         form{
+         margin-top:40px;
+         }
+         #emp_id ,#emp_name,#emp_date,#emp_in,#emp_out{
+         border:none;
+         border-bottom:1px solid #888;
+         -webkit-transition:0.6s;
+         }
+         #emp_id:focus{
+         border-bottom:2px solid #8c38e0;
+         -webkit-transition:0.6s;
+         }
+         #emp_name:focus{
+         border-bottom:2px solid #8c38e0;
+         -webkit-transition:0.6s;
+         }
+         #emp_date:focus{
+         border-bottom:2px solid #8c38e0;
+         -webkit-transition:0.6s;
+         }
+         #emp_in:focus{
+         border-bottom:2px solid #8c38e0;
+         -webkit-transition:0.6s;
+         }
+         #emp_out:focus{
+         border-bottom:2px solid #8c38e0;
+         -webkit-transition:0.6s;
+         }
+         .btn{
+         margin-top:5px;
+         }
+         button{
+         margin-top:5px;
+         }
+         .data > tr td:last-child{
+         color:green;
+         //border:1px solid green;
+         }
+         .table1{
+         margin-top:20px;
+         display:none;
+         }
+         .page-footer{
+         background-color:black;
+         position:relative;
+         bottom:0px;
+         padding:50px;
+         width:100%;
+         margin-top:100px;
+         text-align:center;
+         }
+         .Update{
+         display:none;
+         width:600px;
+         height:400px;
+         position:fixed;
+         z-index: 2;
+         overflow:none;
+         top:75px;
+         left:250px;
+         //right:250px;
+         }
+         .tabledata{
+         //display:block;
+         }
+      </style>
+   </head>
+   <body>
+      <header class="container-fullwidth">
+         <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-default navbar-fixed-top">
+               <div class="col-md-3" >
+			   <div class="navbar-brand">
+			   <div class="navbar-header">
+			   <li class="navbar-brand logo"></li>
+               	   <div class="navbar-brand" style="font-size:12px;font-weight:bold;margin-left:-10px;margin-top:-10px;">WEATHER TODAY</div>				
+				</div>
+				</div>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>		
+					<span class="icon-bar"></span>		
+					<span class="icon-bar"></span>
+				</button>				
+				</div>
+               <div class="collapse navbar-collapse" id="myNavbar" style="padding-top:10px;">
+                  <div  class="col-md-5">
+                     <ul class="navbar-nav ">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-download-alt"></span>DOWNLOADS</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-exclamation-sign"></span>ABOUT</a></li>
+                     </ul>
+                  </div>
+                  
+                  <div class="col-md-4 col-xs-*" >
+                     <ul class="navbar-nav pull-right icon ">
+                        <li class="nav-item" ><a href="form.html" class="nav-link"><span class="glyphicon glyphicon-user" style="font-size:14px;font-weight:bold;"> SIGNUP</span></a></li>
+                        <li class="nav-item" ><a href="#" class="nav-link"><span class="glyphicon glyphicon-log-in" style="font-size:14px;font-weight:bold;"> LOGIN</span></a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+      
+
+	<div class="row below_head">
+		<div class="col-md-12">
+			<!-- <h2>Please Enter your Details <span class="glyphicon glyphicon-info-sign"></span></h2>	 -->
+		</div>
+	</div>
+	</header>
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-3 left">
+                  <ol>
+                     <li><a href="#">Some Link</a></li>
+                     <li><a href="#">Some Link</a></li>
+                     <li><a href="#">Some Link</a></li>
+                  </ol>
+               </div>
+               <div class="col-md-6">
+                  <form>
+                     <fieldset>
+                        <legend class="text-primary">
+                           <h3 style="font-weight:bold;">Sign Up here</h3>
+                        </legend>
+                        <b>
+                           <p class="text-success">Employee ID:</p>
+                        </b>
+                        <input type="text" id="emp_id" data-toggle="tooltip" title="Enter Your ID" maxlength="6" minlength="6" class="form-control" placeholder="e.g.: 910255" required>
+                        <p class="mess"> </p>
+                        <b>
+                           <p class="text-success">Employee Name:</p>
+                        </b>
+                        <input type="text" class="form-control" id="emp_name" maxlength="20" placeholder="e.g.:John" required>
+                        <b>
+                           <p class="text-success">Employee Date:</p>
+                        </b>
+                        <input type="date" class="form-control input-group " placeholder="yyy/mm/dd" id="emp_date" required><br>
+                        <b class="text-success">Employee Time:</b>
+                        <p>IN Time:</p>
+                        <input type="time" min="10:00" max="6:30" class="form-control clockpicker" placeholder="10:00" id="emp_in" required>
+                        <p>Out Time:</p>
+                        <input type="time" min="10:00" max="6:30" class="form-control clockpicker" placeholder="06:00" id="emp_out">
+                        <b><input type="button" value="Submit" onclick="validation()" id ="saveIt" class="btn btn-lg btn-success " ></b>
+                        <b><button type="reset"  class="btn btn-lg btn-danger " >Clear</button></b>
+                     </fieldset>
+                  </form>
+               </div>
+               <div class="col-md-3">
+               </div>
+            </div>
+            <div class="modal" id="newModal">
+               <div class="modal-content">
+               </div>
+            </div>
+            <div class="row table1">
+               <div class="col-md-1 col-sm-offset-0">
+               </div>
+               <div class="col-md-10 tabledata">
+                  <div>
+                     <b class="text-primary">Search in table:</b> <input type="search" class="form-control" placeholder="Search the data here.." id="search">
+                  </div>
+                  <table class="table table-responsive table-striped">
+                     <thead style="border:1px solid black;">
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Employee Date</th>
+                        <th>In Time</th>
+                        <th>Out Time</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                     </thead>
+                     <tbody class="data">
+                     </tbody>
+                  </table>
+               </div>
+               <div class="col-md-1">
+               </div>
+            </div>
+         </div>
+         <div  id="modalUpdateIt"  class="Update" >
+            <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <span class="close" onclick="closeIt()" >&times;</span> -->
+                  <!-- <h3>Update</h3> -->
+               </div>
+               <div class="modal-body">
+                  <div class="row">
+                     <div class="col-md-1">
+                     </div>
+                     <div class="col-md-10">
+                        <legend class="text-primary">
+                           <h3 style="font-weight:bold;"><span class="close" onclick="closeIt()">&times;</span>Update here</h3>
+                        </legend>
+                        <b>
+                           <p class="text-secondary">Employee ID:</p>
+                        </b>
+                        <input type="text"  maxlength="6" minlength="6" class="form-control" id="emp_idmodal" disabled>
+                        <b>
+                           <p class="text-secondary">Employee Name:</p>
+                        </b>
+                        <input type="text" class="form-control" id="emp_namemodal" maxlength="20" >
+                        <b>
+                           <p class="text-secondary">Employee Date:</p>
+                        </b>
+                        <input type="date" data-format="yyy/mm/dd" class="form-control input-group "  id="emp_datemodal"><br>
+                        <b>Employee Time:</b>
+                        <p>IN Time:</p>
+                        <input type="time" min="10:00" max="6:30" class="form-control clockpicker" id="emp_inmodal" >
+                        <p>Out Time:</p>
+                        <input type="time" min="10:00" max="6:30" class="form-control clockpicker"  id="emp_outmodal">
+                     </div>
+                     <div class="col-md-1">
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <b><input type="button" id="button" onclick="updateIt(c) " value="Update"  class="btn btn-md btn-primary " ></b>
+                  <b><button type="button"  class="btn btn-md btn-default " onclick="closeIt()"  >Close</button></b>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="modalDelete" class="modal fade" role="dialog" >
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h3>Delete Data</h3>
+               </div>
+               <div class="modal-body">
+                  <h5 class="text-primary">DATA DELETED</h5>
+               </div>
+               <div class="modal-footer">
+                  <button class="btn btn-sm btn-info" data-dismiss="modal">Close</button> 
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="container-fullwidth">
+         <footer class="page-footer black">
+            Copyright &copy; 2019 
+         </footer>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script>
+         // var array = [] to make a some space in it..;
+		var array = [];
+		var b = [];
+         
+		 //display fucntion to display the content form localStorage.
+			displaydataFunction();
+		 
+		 
+         //Validation of id only...
+         $("#emp_id").change(function(){ 
+         		 if(!$.isNumeric($("#emp_id").val()) ){
+         			$("#emp_id").css("border","1px solid red");
+         			alert("Please enter your valid ID in Numbers");
+         		 }else{
+         			$("#emp_id").css("border","1px solid lightgrey");
+         		 } 
+         		}); 
+         function validation(){ 
+				
+				//Validation of the form page
+         		var emp_id = $("#emp_id").val();
+         		var emp_name = $("#emp_name").val();
+         		var emp_date = $("#emp_date").val();
+         		var emp_in = $("#emp_in").val();
+         		var emp_out = $("#emp_out").val();
+         		<!-- $("#emp_id").change(function(){ -->
+         				<!-- $(this).css("border","1px solid lightgrey"); -->
+         				<!-- $("span").hide(); -->
+         			<!-- }); -->
+         		
+         		if(emp_id == "" || emp_id == null ){
+         			
+         			$("#emp_id").css("border","1px solid red");
+         			$("#emp_id").after('<span class="error" style="color:red;float:right; margin-right:-100px;margin-top:-30px;">* Enter your ID</span>');
+         			$("#emp_id").change(function(){
+         				$(this).css("border","1px solid lightgrey");
+         				$("span").hide();
+         			});
+         			
+         		}else if(emp_name == "" || emp_name == null){
+         			$("#emp_name").css("border","1px solid red");
+         			$("#emp_name").after('<span class="error" style="color:red;float:right; margin-right:-120px;margin-top:-30px;"">* Enter your name</span>');
+         			$("#emp_name").change(function(){
+         				$(this).css("border","1px solid lightgrey");
+         				$("span").hide();
+         			});
+         		}else if(emp_date == "" || emp_date == null){
+         			$("#emp_date").css("border","1px solid red");
+         			$("#emp_date").after('<span class="error" style="color:red;float:right; margin-right:-90px;margin-top:-30px;">* Enter date</span>');
+         			$("#emp_date").change(function(){
+         				$(this).css("border","1px solid lightgrey");
+         				$("span").hide();
+         			});
+         		}else if(emp_in == "" || emp_in == null){
+         			$("#emp_in").css("border","1px solid red");
+         			$("#emp_in").after('<span class="error" style="color:red;float:right; margin-right:-130px;margin-top:-30px;">* Enter your IN time</span>');
+         			$("#emp_in").change(function(){
+         				$(this).css("border","1px solid lightgrey");
+         				$("span").hide();
+         			});
+         		}else if(emp_out == "" || emp_out == null){
+         			$("#emp_out").css("border","1px solid red");
+         			$("#emp_out").after('<span class="error" style="color:red;float:right; margin-right:-140px;margin-top:-30px;">* Enter your Out Time</span>');
+         			$("#emp_out").change(function(){
+         				$(this).css("border","1px solid lightgrey");
+         				$("span").hide();
+         			});
+         		}
+         		else{
+         		
+				var emp_id = $("#emp_id").val();
+         		var emp_name = $("#emp_name").val();
+         		var emp_date = $("#emp_date").val();
+         		var emp_in = $("#emp_in").val();
+         		var emp_out = $("#emp_out").val();
+         		         		
+         		var person = {
+         		"Id":emp_id,
+         		"Name":emp_name,
+         		"Date":emp_date,
+         		"IN":emp_in,
+         		"Out":emp_out
+         		};
+				
+         		array.push(person);
+         				
+         		localStorage.setItem("User",JSON.stringify(array));			
+         		//console.log(JSON.parse(array[1]));			
+         		displaydataFunction();
+					
+				
+				<!-- } -->
+				}			
+       }
+		<!-- function saveIt(){ -->
+			
+				
+		<!-- } -->
+         function displaydataFunction(){
+         	//alert("in display table");
+          	b = JSON.parse(localStorage.getItem("User"));
+           	if(b != null && b != undefined && b != ""){
+         	$(".table1").css("display","block");      
+         	$('.data').empty();
+			for(c=0;c<b.length;c++){         
+         	$("<tr><td>"+b[c].Id+"</td><td>"+b[c].Name+"</td><td>"+b[c].Date+"</td><td>"+b[c].IN+"</td><td>"+b[c].Out+"</td><td><input type='button' value='update' class='btn btn-xs btn-primary' onClick='buttonupdate("+c+")'/></td><td><input type='button' class='btn btn-xs btn-danger' onClick='delFunction("+c+")' id='del' value='Delete'></td></tr>").appendTo(".data");
+				}
+         	}else{
+				$(".table1").css("display","none");
+			}
+			
+         }
+         var stored_data=[]; //Declared variable to retrieve the localStorage data..
+         var paraval;  //Declared variable to eqaul the value with c - i.e count of the click or button..
+         function buttonupdate(c){
+         	var stored_data = JSON.parse(localStorage.getItem("User"));
+         	$("#emp_idmodal").val(stored_data[c].Id);
+         	$("#emp_namemodal").val(stored_data[c].Name);
+         	$("#emp_datemodal").val(stored_data[c].Date);
+         	$("#emp_inmodal").val(stored_data[c].IN);
+         	$("#emp_outmodal").val(stored_data[c].Out);
+         	
+         	$(".Update").css("display","block");
+         	paraval=c;
+			}
+	        	 
+         function updateIt(){
+         	
+         		//Updating the LocalStorage with the variable paraval which is globally defined..;
+         		 array = JSON.parse(localStorage.getItem("User"));
+         		 console.log(array[paraval],"works")
+         		 array[paraval].Id = $("#emp_idmodal").val();
+         		 array[paraval].Name = $("#emp_namemodal").val();
+         		 array[paraval].Date = $("#emp_datemodal").val();
+         		 array[paraval].IN = $("#emp_inmodal").val();
+         		 array[paraval].Out = $("#emp_outmodal").val();
+         
+         		localStorage.setItem("User",JSON.stringify(array));
+         		//console.log(newdata.Id[c]);
+         		displaydataFunction();
+				$(".Update").css("display","none");
+         }
+         function closeIt(){
+         		$(".Update").css("display","none");
+         		
+         }
+         
+        var bis; 
+        function delFunction(para){ 
+				alert(para);
+				bis = JSON.parse(localStorage.getItem("User"));
+         	 // console.log(bis[para]);
+				<!-- $("#del").click(function({ -->
+         	      	
+				<!-- });         		 -->
+				bis.splice(para,1);
+				localStorage.setItem("User",JSON.stringify(bis));
+				displaydataFunction();
+				if(bis == null || bis == undefined || bis == ""){
+					$(".table1").css("display","none");
+				}
+				
+		}
+		 
+</script>
+</body>
+</html>
