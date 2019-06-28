@@ -1,0 +1,377 @@
+<!DOCTYPE Html>
+<html>
+<head>
+	<title>Weather Today</title>
+	<meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+	<link rel="shortcut icon" type="image/x-icon/gif" href="favicon.ico">
+	<link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">
+	
+	<style>
+		nav{
+			position:sticky;
+			padding-top:10px;
+		}		
+		li{
+			list-style-type:none;
+			margin-left:20px;
+			padding:10px;
+			font-weight:bold;
+		}
+		li:hover{
+         -webkit-transition:0.2s;
+         box-shadow:1px 20px 5px -15px #888;
+         color:#888;
+         }
+				
+		.logo{
+			background-image: url('weather-app-button-vector-19380544.jpg');
+			background-repeat:no-repeat;
+			margin-top:-5px;
+			margin-left:-25px;
+		}
+		.left-side{
+			padding-left:40px;
+			//overflow:none;
+						
+		}
+		.right-side{
+			padding-right:40px;
+			//overflow:none;
+		}
+		.below_head{
+			padding:15px;
+			background-color:#8c38e0;
+			color:white;
+			<!-- margin:20px; -->
+			position:absolute;
+			margin-top:40px;
+			margin-bottom:20px;
+		}
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			border-radius: 5px; 
+			}
+		footer{
+			position:absolute;
+			margin-bottom:0px;
+			padding:100px;
+		}	
+		<!-- IN this media query 630px = 39.375rem -->
+		@media (max-width:39.375rem){ 
+			.panel-success{
+				width:100%;
+				
+			}
+			.panel-primary{
+				width:100%;
+			}
+			.panel-warning{
+				width:100%;
+			}
+			.panel-danger{
+				width:100%;
+			}
+			.below_head{
+				margin-top:30px;
+			}
+			footer{
+				position:absolute;
+				margin-bottom:0px;
+				padding:100px;
+			}
+			.foot-text{
+				text-align:left;
+				position:absolute;
+			}
+		 }
+	</style>
+</head>
+<body>
+	<header class="container-fullwidth">
+         <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-default navbar-fixed-top">
+               <div class="col-md-3" >
+			   <div class="navbar-brand">
+			   <div class="navbar-header">
+			   <li class="navbar-brand logo"></li>
+               	   <div class="navbar-brand" style="font-size:12px;font-weight:bold;margin-left:-10px;margin-top:-10px;">WEATHER TODAY</div>				
+				</div>
+				</div>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>		
+					<span class="icon-bar"></span>		
+					<span class="icon-bar"></span>
+				</button>				
+				</div>
+               <div class="collapse navbar-collapse" id="myNavbar" style="padding-top:4px;">
+                  <div  class="col-md-5">
+                     <ul class="navbar-nav ">
+                        <li class="nav-item"><a href="index.html" class="nav-link"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-download-alt"></span>DOWNLOADS</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-exclamation-sign"></span>ABOUT</a></li>
+                     </ul>
+                  </div>
+                  
+                  <div class="col-md-4 col-xs-*" >
+                     <ul class="navbar-nav pull-right icon ">
+                        <li class="nav-item" ><a href="form.html" class="nav-link"><span class="glyphicon glyphicon-user" style="font-size:14px;font-weight:bold;"> SIGNUP</span></a></li>
+                        <li class="nav-item" ><a href="#" class="nav-link"><span class="glyphicon glyphicon-log-in" style="font-size:14px;font-weight:bold;"> LOGIN</span></a></li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+      
+
+	<div class="row below_head">
+		<div class="col-md-12">
+			<!-- <h2>Please Enter your Details <span class="glyphicon glyphicon-info-sign"></span></h2>	 -->
+		</div>
+	</div>
+	</header>
+	<div class="container">
+	<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-success" style="height:400px;">
+		<div class="panel-heading lead">LEFT SIDE</div>
+		<div class="panel-body">
+		<p>Details</p>
+		<p>Details</p>
+		<p>Some LInk</p>
+		</div>
+		</div>
+	</div>
+	<div class="col-md-6">	
+		<div class="panel panel-primary" style="height:400px;">
+			<div class="panel-heading lead">Check Weather</div>
+			<ul class="nav nav-tabs">
+				<div class="row listofprimarycheckauto"  style="display:inline;">
+					<div class="col-md-4">		
+						<li style="padding:0px;" class="active"><a data-toggle="tab" href="#AutoCheck">Auto-Check</a></li>
+					</div>
+					<div class="col-md-4">	
+						<li style="padding:0px;"><a data-toggle="tab" href="#ManCheck">Manual-Check</a></li>
+					</div>
+					<div class="col-md-4">		
+						<li style="padding:0px;"><a data-toggle="tab" href="#other">Other</a></li>
+					</div>	
+				</div>		
+			</ul>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="tab-content">
+					<div id="AutoCheck" class="tab-pane fade in active">
+					<button onclick="darksky()" class="btn btn-info btn-lg btn-xs btn-sm btn-md" style="width:100%;font-weight:bold;">Click to get Location and display the Weather..</button>
+					<br>
+					<div style="overflow-x:scroll; width:100%;" class="table-responsive">	
+					<table class="table table-striped" >
+					<th>IP</th><th>Country</th><th>Latitude</th><th>Longitude</th>
+					<tr class="tbody">
+				
+				
+					</tr>
+					</table>
+					</div>
+					</div>
+					<div id="ManCheck" class="tab-pane fade">
+					<select class="Countries"> 
+					<option placehlolder="Select the Region">--Select--</option>
+					</select>
+		
+					<select class="State"> 
+					<option placehlolder="Select the Region">--Select--</option>
+					</select>
+					<select class="city"> 
+					<option placehlolder="Select city">--Select--</option>
+					</select>
+					</div>
+					
+					<div id="other" class="tab-pane fade">
+					
+					</div>
+				</div>
+			</div>	
+		</div>
+		</div>
+	</div>
+			<div class="col-md-3">
+				<div class="panel panel-warning" style="height:400px;">
+					<div class="panel-heading lead">
+						Right Side 
+					</div>
+					<div class="panel-body">
+						<p>Details</p>
+						<p>Details</p>
+						<p>Details</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div  class="col-md-3">
+		</div>
+		<div class="col-md-6 "> 
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					LIVE DATA
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3 text-center">
+						<div class="label label-default">Past</div>
+						</div>
+						<div class="col-md-6 text-center">
+						<div class="card" style="padding:20px;">
+						<div class="label label-primary">Current weather</div>
+					<p class="currentlysummary"></p> <!-- Currently Summary -->
+					<p class="currentlyicon"></p>
+					<p class="currently"></p>
+					<p class="time"></p>
+						</div>
+						</div>
+						<div class="col-md-3 text-center">
+							<div class="label label-info">Forecast</div>
+						</div>
+					</div>
+				</div>
+			<div class="col-md-3">
+			</div>
+			</div>
+		</div>
+	</div>
+	<footer style="color:#8c38e0;background-color:#000000;width:100%;margin-bottom:0px;">
+		
+		
+		<center><p class="foot-text text-center" style="position:absolute; bottom:10px;"><b>Weather Today &copy; 2019</b> <cite> -Powered by me(Clyde Correa).</cite></p></center>
+		
+	</footer>
+	<script src="jquery-3.4.0.js"></script>
+	<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		
+		function call(){
+			var country_code;
+			var i;
+			$.ajax({			
+				url:'http://dataservice.accuweather.com/locations/v1/countries/ASI?apikey=CJlcy0iltHBkmnqwRXYHAoV4dYA3jAsl&language=en-US',
+				type:'GET',						
+				success:function(data){
+					//console.log(data);
+					var locate_data = data;
+					for(i=0;i<=locate_data.length;i++){
+							$("<option value='"+locate_data[i].ID+"'>"+ locate_data[i].LocalizedName +"</option>").appendTo(".Countries");
+						
+						//console.log(locate_data[i].ID);
+					}								
+						 
+					}
+				});	
+				
+		}
+	
+		$(".Countries").change(function(){
+			var country_code = $(".Countries").val();	
+			console.log(country_code);
+        		$.ajax({	
+				url:'http://dataservice.accuweather.com/locations/v1/adminareas/'+country_code+'?apikey=CJlcy0iltHBkmnqwRXYHAoV4dYA3jAsl&language=en-US&offset=0',
+				type:'GET',						
+				success:function(data){
+					console.log(data);
+					var locate_data = data;
+					console.log(locate_data);
+					var i;
+					$(".State").empty();
+					for(i=0;i<=locate_data.length;i++){
+							$("<option>"+locate_data[i].LocalizedName+"</option>").appendTo(".State");
+							//console.log(locate_data[i].ID);
+						}
+					}				
+						
+					});
+			
+		});	
+		$(".State").change(function(){
+			
+				$.ajax({			
+				url:'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=CJlcy0iltHBkmnqwRXYHAoV4dYA3jAsl&q=mumbai&language=en-US&details=false&offset=0',
+				type:'GET',						
+				success:function(data){
+					console.log(data);
+					var locate_data = data;
+					//console.log(locate_data);
+					var i;
+						$("<option>"+locate_data[i].LocalizedName+"</option>").appendTo(".city");
+					}				
+						
+					});
+			});
+		function darksky(){
+			var latitude;
+			var longitude;
+			$.ajax({			
+				url:'http://api.ipstack.com/check?access_key=0c271d9df7c646c648ddd4ae27ffb6bd&format=1',
+				type:'GET',						
+				success:function(data){
+					console.log(data);
+					//var locate_data = data;
+					//console.log(data.ip);
+					//var i;
+						$("<td>"+data.ip+"</td><td>"+data.country_name+"</td><td>"+data.latitude+"</td><td>"+data.longitude+"</td>").appendTo(".tbody");
+						latitude = data.latitude;
+						longitude = data.longitude;
+									
+					 		console.log(latitude);
+					 		console.log(longitude);
+							var newkey ='69800055d8ba2012a05b49a893a4a015';
+							$.ajax({
+								url:'https://api.darksky.net/forecast/'+newkey+'/'+latitude+','+longitude+'',
+								type:'GET',
+								crossDomain: true,
+								dataType:'jsonp',
+								success:function(result){
+								
+								
+									console.log(result);
+									//Current Weather
+									$("<br>"+result.currently.summary+"<br>").appendTo(".currentlysummary");
+									var icon = result.currently.icon;
+									if(icon === 'partly-cloudy-day'){
+									$("<img src='partly-cloudy-day.png 'style='width:50%;'></img>").appendTo(".currentlyicon");
+									}
+									if(icon === 'partly-cloudy-night'){
+									$("<img src='partly-cloudy-night.png' 'style='width:50%;'></img>").appendTo(".currentlyicon");
+									}
+									if(icon === 'rain'){
+									$("<img src='drizzle-icon.png' 'style='width:50%;'></img>").appendTo(".currentlyicon");
+									}
+									if(icon === 'clear-day'){
+									$("<img src='clear-day.png' 'style='width:50%;'></img>").appendTo(".currentlyicon");
+									}
+									if(icon === 'wind'){
+									$("<img src='wind.png' 'style='width:50%;'></img>").appendTo(".currentlyicon");
+									}
+									var temperature = result.currently.temperature;
+									var tempincelsius = Math.round((temperature - 32)* 5/9);
+									$("<p class='text-info'>Temperature :"+tempincelsius+" &#8451; <br/>TimeZone:"+result.timezone+ " </p>").appendTo(".currently");
+									//var datentime = JSON.parse(result.currently.time);
+									var d = new Date();
+									console.log(d);
+									$("<p class='text-info'>Current Date & Time:"+d+"</p>").appendTo(".time");
+									
+									//Daily weather.
+									
+									
+								}
+							
+							});
+							
+						}	
+					});
+				
+				
+		
+		}						
+	</script>
+</body>
+</html>
