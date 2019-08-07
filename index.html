@@ -86,7 +86,7 @@
 		 }
 	</style>
 </head>
-<body>
+<body onload="call()">
 	<header class="container-fullwidth">
          <div class="row">
             <nav class="navbar navbar-expand-lg navbar-default navbar-fixed-top">
@@ -175,14 +175,14 @@
 					</div>
 					<div id="ManCheck" class="tab-pane fade">
 					<select class="Countries"> 
-					<option placehlolder="Select the Region">--Select--</option>
+					<option placehlolder="Select the Region">-- Select Country --</option>
 					</select>
 		
 					<select class="State"> 
-					<option placehlolder="Select the Region">--Select--</option>
+					<option placehlolder="Select the State">-- Select State --</option>
 					</select>
 					<select class="city"> 
-					<option placehlolder="Select city">--Select--</option>
+					<option placehlolder="Select city">-- Select City --</option>
 					</select>
 					</div>
 					
@@ -254,7 +254,7 @@
 			var country_code;
 			var i;
 			$.ajax({			
-				url:'http://dataservice.accuweather.com/locations/v1/countries/ASI?apikey=CJlcy0iltHBkmnqwRXYHAoV4dYA3jAsl&language=en-US',
+				url:'http://dataservice.accuweather.com/locations/v1/countries/ASI?apikey=mdQuh3FDUDWAtfkDP2GeW9YnGjeA9Vdc&language=en-US',
 				type:'GET',						
 				success:function(data){
 					//console.log(data);
@@ -272,10 +272,11 @@
 	
 		$(".Countries").change(function(){
 			var country_code = $(".Countries").val();	
+			
 			console.log(country_code);
         		$.ajax({	
-				url:'http://dataservice.accuweather.com/locations/v1/adminareas/'+country_code+'?apikey=CJlcy0iltHBkmnqwRXYHAoV4dYA3jAsl&language=en-US&offset=0',
-				type:'GET',						
+				url:'http://dataservice.accuweather.com/locations/v1/adminareas/'+country_code+'?apikey=mdQuh3FDUDWAtfkDP2GeW9YnGjeA9Vdc&language=en-US',
+				type:'GET',				
 				success:function(data){
 					console.log(data);
 					var locate_data = data;
@@ -294,18 +295,27 @@
 		$(".State").change(function(){
 			
 				$.ajax({			
-				url:'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=CJlcy0iltHBkmnqwRXYHAoV4dYA3jAsl&q=mumbai&language=en-US&details=false&offset=0',
+				url:'http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=mdQuh3FDUDWAtfkDP2GeW9YnGjeA9Vdc&language=en-US&details=true',
 				type:'GET',						
 				success:function(data){
-					console.log(data);
+					//console.log(data.);
 					var locate_data = data;
-					//console.log(locate_data);
+										
+					console.log(name);
+					console.log(locate_data[0].Country.ID);
 					var i;
-						$("<option>"+locate_data[i].LocalizedName+"</option>").appendTo(".city");
-					}				
-						
+					 for(i=0;i<=locate_data.length;i++){ 
+						var Country_id = locate_data[i].Country.ID;
+						var name = locate_data[i].LocalizedName;
+							if(Country_id === 'IN'){
+						 $("<option>"+locate_data[i].LocalizedName+"</option>").appendTo(".city"); 
+						 }
+					 }
+					 
+					}	
 					});
 			});
+			
 		function darksky(){
 			var latitude;
 			var longitude;
